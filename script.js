@@ -7,23 +7,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const craftSound = document.getElementById('craft-sound');
     const birthdaySound = document.getElementById('birthday-sound');
 
-    // Xử lý kéo thả
+    let selectedItem = null;
+
+    // Chạm để chọn nguyên liệu
     materials.forEach(material => {
-        material.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text', material.dataset.item);
+        material.addEventListener('click', () => {
+            selectedItem = material.dataset.item;
+            materials.forEach(m => m.classList.remove('selected'));
+            material.classList.add('selected');
         });
     });
 
+    // Chạm để đặt vào ô
     slots.forEach(slot => {
-        slot.addEventListener('dragover', (e) => e.preventDefault());
-        slot.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const item = e.dataTransfer.getData('text');
-            slot.innerHTML = `<img src="images/${item}.png" alt="${item}">`;
-            slot.classList.add('filled');
-            slot.dataset.item = item;
-            slot.classList.remove('hint'); // Xóa gợi ý cũ khi thả mới
-            slot.removeAttribute('data-hint');
+        slot.addEventListener('click', () => {
+            if (selectedItem) {
+                slot.innerHTML = `<img src="images/${selectedItem}.png" alt="${selectedItem}">`;
+                slot.classList.add('filled');
+                slot.dataset.item = selectedItem;
+                slot.classList.remove('hint');
+                slot.removeAttribute('data-hint');
+                selectedItem = null; // Xóa lựa chọn sau khi đặt
+                materials.forEach(m => m.classList.remove('selected'));
+            }
         });
     });
 
@@ -62,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             result.classList.add('error');
             setTimeout(() => result.classList.remove('error'), 1000);
 
-            // Hiển thị gợi ý cho các ô sai
             slots.forEach((slot, index) => {
                 const row = Math.floor(index / 3);
                 const col = index % 3;
@@ -72,14 +77,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentItem !== correctItem) {
                     slot.classList.add('hint');
                     slot.dataset.hint = correctItem === 'milk' ? 'Sữa' :
-                                      correctItem === 'sugar' ? 'Đường' :
-                                      correctItem === 'egg' ? 'Trứng' :
-                                      correctItem === 'wheat' ? 'Lúa Mì' : '';
-                } else {
-                    slot.classList.remove('hint');
-                    slot.removeAttribute('data-hint');
-                }
-            });
-        }
-    });
-});
+                                       correctItem === 'sugar' ? 'Đường' :
+                                       correct
