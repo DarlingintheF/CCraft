@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn Chế Tạo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bàn Chế Tạo</h1>
+        
+        <!-- Khu vực nguyên liệu -->
+        <div class="materials">
+            <h3>Nguyên liệu</h3>
+            <div class="material" draggable="true" data-item="milk">
+                <img src="images/milk.png" alt="Xô Sữa">
+            </div>
+            <div class="material" draggable="true" data-item="sugar">
+                <img src="images/sugar.png" alt="Đường">
+            </div>
+            <div class="material" draggable="true" data-item="egg">
+                <img src="images/egg.png" alt="Trứng">
+            </div>
+            <div class="material" draggable="true" data-item="wheat">
+                <img src="images/wheat.png" alt="Lúa Mì">
+            </div>
+        </div>
+
+        <!-- Bàn chế tạo 3x3 -->
+        <div class="crafting-table">
+            <div class="grid">
+                <div class="slot" data-row="0" data-col="0"></div>
+                <div class="slot" data-row="0" data-col="1"></div>
+                <div class="slot" data-row="0" data-col="2"></div>
+                <div class="slot" data-row="1" data-col="0"></div>
+                <div class="slot" data-row="1" data-col="1"></div>
+                <div class="slot" data-row="1" data-col="2"></div>
+                <div class="slot" data-row="2" data-col="0"></div>
+                <div class="slot" data-row="2" data-col="1"></div>
+                <div class="slot" data-row="2" data-col="2"></div>
+            </div>
+            <div class="result" id="result"></div>
+        </div>
+
+        <!-- Nút kiểm tra -->
+        <button id="craft-btn">Chế Tạo</button>
+
+        <!-- Thông báo chúc mừng -->
+        <div class="birthday-message" id="birthday-message">
+            <h2>Happy Birthday</h2>
+            <h2>Dương Huyền Trang<3</h2>
+            <p>cục cưng của anh sinh nhật vui vẻ nha</p>
+        </div>
+    </div>
+
+    <audio id="craft-sound" src="sounds/craft.mp3"></audio>
+    <audio id="birthday-sound" src="sounds/birthday.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    touch-action: manipulation;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.materials {
+    margin: 20px 0;
+}
+
+.material {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    background-color: #ddd;
+    border: 2px solid #999;
+    border-radius: 5px;
+    cursor: grab;
+    transition: transform 0.2s;
+}
+
+.material:hover {
+    transform: scale(1.1);
+}
+
+.material img {
+    width: 40px;
+    height: 40px;
+}
+
+.crafting-table {
+    margin: 20px 0;
+    position: relative;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    gap: 5px;
+    background-color: #8b4513;
+    padding: 10px;
+    border: 5px solid #654321;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slot {
+    width: 60px;
+    height: 60px;
+    background-color: #d3d3d3;
+    border: 2px solid #999;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slot img {
+    width: 40px;
+    height: 40px;
+    transition: opacity 0.3s;
+}
+
+.slot.filled {
+    background-color: #fff;
+    animation: slot-fill 0.3s ease;
+}
+
+.result {
+    width: 60px;
+    height: 60px;
+    margin: 20px auto;
+    background-color: #eee;
+    border: 2px solid #999;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result img {
+    width: 40px;
+    height: 40px;
+}
+
+#craft-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#craft-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.birthday-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffeb3b;
+    padding: 20px;
+    border: 5px solid #f44336;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    animation: pop-in 0.5s ease, bounce 1s infinite alternate;
+    z-index: 1000;
+}
+
+@keyframes slot-fill {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pop-in {
+    0% { transform: translate(-50%, -50%) scale(0); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes bounce {
+    0% { transform: translate(-50%, -50%) translateY(0); }
+    100% { transform: translate(-50%, -50%) translateY(-10px); }
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(3, 50px);
+    }
+    .slot, .result {
+        width: 50px;
+        height: 50px;
+    }
+    .material img, .slot img, .result img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Thêm vào cuối file styles.css */
+.slot.hint::after {
+    content: attr(data-hint);
+    position: absolute;
+    font-size: 12px;
+    color: #f44336;
+    text-align: center;
+    width: 100%;
+    bottom: 2px;
+    text-shadow: 1px 1px 2px #fff;
+}
+
+.slot.hint {
+    position: relative;
+    background-color: #ffebee;
+    transition: background-color 0.3s;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 600px) {
+    .slot.hint::after {
+        font-size: 10px;
+    }
+}
