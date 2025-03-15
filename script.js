@@ -78,4 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     slot.classList.add('hint');
                     slot.dataset.hint = correctItem === 'milk' ? 'Sữa' :
                                        correctItem === 'sugar' ? 'Đường' :
-                                       correct
+                                       correctItem === 'egg' ? 'Trứng' :
+                                       correctItem === 'wheat' ? 'Lúa Mì' : '';
+                } else {
+                    slot.classList.remove('hint');
+                    slot.removeAttribute('data-hint');
+                }
+            });
+        }
+    });
+});
